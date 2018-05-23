@@ -10,10 +10,10 @@ namespace BaiTapTinhLuong
     {
         static void Main(string[] args)
         {
-            int n;           
+            int n;
             //Programmer
             Programmer[] nv = new Programmer[1000];
-            
+
             Console.WriteLine("Nhap so nhan vien : ");
             n = Convert.ToInt32(Console.ReadLine());
 
@@ -30,14 +30,14 @@ namespace BaiTapTinhLuong
                 nv[i].XuatProgrammer();
             }
             //Tính lương cho nhân viên
-            Console.WriteLine("-------------Lương nhân viên-----------------");
+            Console.WriteLine("-------------Luong nhan vien-----------------");
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine("Luong cua nhan vien thu " + i + " la {1}" + nv[i].TinhLuong());
+                Console.WriteLine("Luong cua nhan vien thu " + i + " la " + nv[i].TinhLuong());
             }
 
             int dem = 0;
-            Console.WriteLine("------------Số nhân viên có lỗi <5-----------------");
+            Console.WriteLine("------------Nhan vien co loi < 5-----------------");
 
             //Số nv có lỗi lập trình <5
             for (int i = 0; i < n; i++)
@@ -46,11 +46,11 @@ namespace BaiTapTinhLuong
                     i++;
                 dem = i;
             }
-            Console.WriteLine("Tong so nhan vien co so loi <5 là {0}" + dem);
+            Console.WriteLine("Tong so nhan vien co so loi < 5 la " + dem);
 
             //Tester
             Tester[] nvTes = new Tester[1000];
-            
+
             for (int i = 0; i < n; i++)
             {
                 nvTes[i] = new Tester();
@@ -58,30 +58,32 @@ namespace BaiTapTinhLuong
             }
 
             Console.WriteLine("--------------Danh sach----------------");
-            Console.WriteLine("Danh sách nhân viên ");
+            Console.WriteLine("Danh sach nhan vien ");
             for (int i = 0; i < n; i++)
             {
                 nvTes[i].XuatTester();
             }
             //Lương
-            Console.WriteLine("-------------Lương tester--------------");
+            Console.WriteLine("-------------Luong tester--------------");
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine("Luong cua nhan vien thu " + i + " la {1}" + nvTes[i].TinhLuong());
+                Console.WriteLine("Luong cua nhan vien thu " + i + " la " + nvTes[i].TinhLuong());
             }
             //Nhân viên tester có số giờ OT max
-            Console.WriteLine("-------------Max Lương tester--------------");
-            double max = 0;
-            max = nvTes[0].TongSoGioOT();
-            for (int i = 0; i < n; i++)
-            {                
-                if (nvTes[i].TongSoGioOT() > max)
+            Console.WriteLine("-------------Max OT tester--------------");
+            double max = nvTes[0].TongSoGioOT(), d = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                if (nvTes[i].TongSoGioOT() >= max)
                 {
                     max = nvTes[i].TongSoGioOT();
-                    nvTes[i].XuatTester();
+                    d = max;
                 }
             }
-            
+            for (int i = 0; i < n; i++)
+                if (nvTes[i].TongSoGioOT() == d)
+                    nvTes[i].XuatTester();
             Console.ReadKey();
         }
     }
