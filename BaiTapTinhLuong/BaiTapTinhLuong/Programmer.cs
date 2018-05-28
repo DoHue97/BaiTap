@@ -8,31 +8,29 @@ namespace BaiTapTinhLuong
 {
     public class Programmer : Worker
     {        
-        double Luong;
         int SoLoi;
-        public void NhapProgrammer()
+        public override void Nhap()
         {
-            Nhap();
-            Console.WriteLine("Nhap luong: ");
-            this.Luong = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Nhap so loi: ");
+            
+            base.Nhap();            
+            Console.Write("Nhap so loi: ");
             this.SoLoi = Convert.ToInt16(Console.ReadLine());
         }
-        public void XuatProgrammer()
+        public override void Xuat()
         {
-            Xuat();
-            Console.WriteLine("Luong {0}: ",Luong);            
-            Console.WriteLine("So loi {0}: ",SoLoi);
+            base.Xuat();
+            Console.WriteLine("Luong thuc te {0} ",LuongCB);
+            Console.WriteLine("So loi {0} ", SoLoi);
         }
-        public Double TinhLuong()
+        public override Double GetLuong()
         {            
             if(SoLoi<20)
             {
-                return Luong + Luong * 10 /100;         
+                return LuongCB + LuongCB * 10 /100;
             }
-            return this.Luong;
+            return this.LuongCB;
         }
-        public int TongLoi()
+        public int GetLoi()
         {
             return SoLoi;
         }

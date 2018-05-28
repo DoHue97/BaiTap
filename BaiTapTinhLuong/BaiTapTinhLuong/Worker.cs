@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 
 namespace BaiTapTinhLuong
 {
-    public class Worker
+    public abstract class Worker
     {
-        public int MaNV;
-        public string TenNV;
-        public void Nhap()
+        protected int MaNV;
+        protected string TenNV;
+        protected double LuongCB;
+
+        public virtual void Nhap()
         {
-            Console.WriteLine("Ma nhan vien: ");
+            Console.Write("Ma nhan vien: ");
             this.MaNV = Convert.ToInt16(Console.ReadLine());
-            Console.WriteLine("Ten nhan vien: ");
+            Console.Write("Ten nhan vien: ");
             this.TenNV = Console.ReadLine();
+            Console.Write("Nhap luong: ");
+            this.LuongCB = Convert.ToDouble(Console.ReadLine());
         }
-        public void Xuat()
+        public virtual void Xuat()
         {
-            Console.WriteLine("Ma nhan vien {0}: ", MaNV);
-            Console.WriteLine("Ma nhan vien {0}: ", TenNV);           
+            Console.WriteLine("Ma nhan vien {0} ", MaNV);
+            Console.WriteLine("Ma nhan vien {0} ", TenNV);
+            Console.WriteLine("Luong {0} ", LuongCB);
         }
+        public abstract Double GetLuong();   
     }
 }

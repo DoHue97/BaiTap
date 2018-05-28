@@ -5,6 +5,3 @@ F:\NCCSoft\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\bin\Debug\BaiTapTinhLuong.pdb
 F:\NCCSoft\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\obj\Debug\BaiTapTinhLuong.csprojResolveAssemblyReference.cache
 F:\NCCSoft\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\obj\Debug\BaiTapTinhLuong.exe
 F:\NCCSoft\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\obj\Debug\BaiTapTinhLuong.pdb
-F:\Demo\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\bin\Debug\BaiTapTinhLuong.exe.config
-F:\Demo\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\obj\Debug\BaiTapTinhLuong.exe
-F:\Demo\BaiTap\BaiTapTinhLuong\BaiTapTinhLuong\obj\Debug\BaiTapTinhLuong.pdb
