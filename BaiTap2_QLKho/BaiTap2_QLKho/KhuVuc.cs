@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace BaiTap2_QLKho
 {
     public class KhuVuc : Kho
-    {        
+    {
         public string TenKV;
         public float DTich;
         public string TenHang;
         public int SLHang;
         public float DTCanChua;
+       
         public void SetSL(int SLg)
         {
             SLHang = SLg;
@@ -20,6 +21,10 @@ namespace BaiTap2_QLKho
         public int GetSL()
         {
             return SLHang;
+        }
+        public void SetDT(float dientich)
+        {
+            DTich = dientich;
         }
         public float GetDienTich()
         {
@@ -40,9 +45,9 @@ namespace BaiTap2_QLKho
             else return false;
         } 
         public void GetThongTin()
-        {           
+        {
             Console.WriteLine("Ten khu: " + TenKV);
-            Console.WriteLine("Dien tich: " + GetDienTich());
+            Console.WriteLine("Dien tich con: " + GetDienTich());
             Console.WriteLine("Ten mat hang: " + GetTenHang());
             Console.WriteLine("So luong mat hang: " + GetSL());
         }
@@ -54,7 +59,7 @@ namespace BaiTap2_QLKho
         public void NhapHang(string tenkho, string tenkhu,int sln)
         {
             Console.Write("Nhap ten hang: ");
-            TenHang = Console.ReadLine();    
+            TenHang = Console.ReadLine();
             Console.Write("Nhap dien tich can chua: ");
             DTCanChua = float.Parse(Console.ReadLine());
         }
@@ -63,5 +68,6 @@ namespace BaiTap2_QLKho
             Console.Write("Nhap so luong hang: ");
             SetSL(GetSL()-slx);
         }
+
     }
 }
