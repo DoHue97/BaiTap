@@ -97,6 +97,7 @@ namespace BaiTap2_QLKho
                             Console.WriteLine("--------------------------------");
                             kv[j].GetThongTin();
                         }
+                        else Console.WriteLine("Khu vuc dang trong");
                 }
         }
         private static void GetListKho()
@@ -132,6 +133,19 @@ namespace BaiTap2_QLKho
                         }
                         else Console.WriteLine("Kho khong co hang de xuat hoac so hang khong du.");
         }
+        private static void XemHang()
+        {
+            string tenhang;
+            Console.Write("Nhap vao ten mat hang muon xem: ");
+            tenhang = Console.ReadLine();
+            for (int i = 0; i < kho.Count; i++)
+                for (int j = 0; j < kv.Count; j++)
+                    if (tenhang == kv[j].GetTenHang())
+                    {
+                        kho[i].Xem();
+                        kv[j].GetThongTin();
+                    }
+        }
         private static void Menu()
         {
             do
@@ -143,6 +157,7 @@ namespace BaiTap2_QLKho
                 Console.WriteLine("3. Xem kho co hang ");
                 Console.WriteLine("4. Xuat hang");
                 Console.WriteLine("5. List kho hang");
+                Console.WriteLine("6. Xem mat hang");
 
                 LC = Convert.ToInt16(Console.ReadLine());
 
@@ -165,8 +180,11 @@ namespace BaiTap2_QLKho
                     case 5:
                         GetListKho();
                         break;
+                    case 6:
+                        XemHang();
+                        break;
                 }
-            } while (LC < 6);
+            } while (LC < 7);
         }
         static void Main(string[] args)
         {
