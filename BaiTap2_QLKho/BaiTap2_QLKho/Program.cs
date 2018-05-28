@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace BaiTap2_QLKho
         static List<Kho> kho;
         static List<KhuVuc> kv;        
         static int LC;
-        public static void NhapTTKho()
+
+        private static void NhapTTKho()
         {
             //Them kho
             int SLKho;
@@ -25,7 +27,7 @@ namespace BaiTap2_QLKho
                 kho.Add(k);
             }
         }
-        public static void NhapKhu()
+        private static void NhapKhu()
         {
             Console.WriteLine("--------------------------------");
             kv = new List<KhuVuc>();
@@ -55,64 +57,82 @@ namespace BaiTap2_QLKho
                 }
             }
         }
-        protected static void NhapHang()
+        private static void NhapHang()
         {
-            //Nhap hang vao kho
-            MatHang mh = new MatHang();
-            int makhu,makho;
-            Console.WriteLine("Nhap vao ma kho can them mat hang: ");
-            makho = Convert.ToInt16(Console.ReadLine());
-            Console.WriteLine("Nhap vao ma khu can them mat hang: ");
-            makhu = Convert.ToInt16(Console.ReadLine());
+            string tenkho, tenkhu;
+            int sln;
+            Console.WriteLine("Nhap vao ten kho can them mat hang: ");
+            tenkho = Console.ReadLine();
+            Console.WriteLine("Nhap vao ten khu can them mat hang: ");
+            tenkhu = Console.ReadLine();
+            Console.Write("Nhap so luong: ");
+            sln = Convert.ToInt32(Console.ReadLine());
 
-            mh.Nhap(makho,makhu);
             for (int i = 0; i < kho.Count; i++)
                 for (int j = 0; j < kv.Count; j++)
-                if (makho == kho[i].MaKho && makhu == kv[j].MaKV && kv[j].DTich > (mh.SL + kv[j].GetSL()))
-                {
-                    kv[j].SetSL(mh.SL + kv[j].GetSL());
-                }
-                else
-                {
-                    Console.WriteLine("Khu vuc day roi!");
-                }
+                    if (tenkho == kho[i].TenKho && tenkhu == kv[j].TenKV)
+                        if (kv[j].GetDienTich() >= sln * kv[j].DTCanChua)
+                        {
+                            kv[j].NhapHang(tenkho, tenkhu, sln);
+                            kv[j].SetSL(kv[j].GetSL() + sln);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Khu vuc khong du chua!");
+                        }
         }
-        public static void XemKho()
+        private static void XemKho()
         {
-            int makho;
+            string tenkho;
             Console.Write("Nhap vao kho muon xem: ");
-            makho = Convert.ToInt16(Console.ReadLine());
+            tenkho = Console.ReadLine();
 
             for (int i = 0; i < kho.Count; i++)
-                if(makho==kho[i].MaKho)
+                if (tenkho == kho[i].TenKho)
                 {
+                    kho[i].Xem();
                     for (int j = 0; j < kv.Count; j++)
                         if (kv[j].KTKVTrong() == false)
                         {
-                            kho[i].Xem();
                             Console.WriteLine("--------------------------------");
                             kv[j].GetThongTin();
                         }
                 }
         }
-        public static void XuatKho()
+        private static void GetListKho()
         {
-            MatHang mh = new MatHang();
-            int makho, makhu;
+            for (int i = 0; i < kho.Count; i++)
+            {
+                kho[i].Xem();
+                for (int j = 0; j < kv.Count; j++)
+                    if (kv[j].KTKVTrong() == false)
+                    {
+                        Console.WriteLine("--------------------------------");
+                        kv[j].GetThongTin();
+                    }
+            }
+        }
+        private static void XuatKho()
+        {
+            string makho, makhu;
+            int slx;
             Console.Write("Nhap ma kho can xuat: ");
-            makho = Convert.ToInt16(Console.ReadLine());
+            makho = Console.ReadLine();
             Console.Write("Nhap ma khu can xuat: ");
-            makhu = Convert.ToInt16(Console.ReadLine());            
-            mh.Xuat(makho, makhu);
+            makhu = Console.ReadLine();
+            Console.Write("Nhap so luong can xuat: ");
+            slx = Convert.ToInt32(Console.ReadLine());
+
             for (int i = 0; i < kho.Count; i++)
                 for (int j = 0; j < kv.Count; j++)
-                    if (makhu == kv[j].MaKV && makho == kho[i].MaKho)
-                    {
-                        kv[j].SetSL(kv[j].GetSL() - mh.GetSL());
-                    }
-                    else Console.WriteLine("Kho khong co hang de xuat hoac so hang khong du.");
-        }       
-        public static void Menu()
+                    if (makhu == kv[j].TenKV && makho == kho[i].TenKho)
+                        if (kv[j].GetSL() >= slx)
+                        {
+                            kv[j].SetSL(kv[j].GetSL() - slx);
+                        }
+                        else Console.WriteLine("Kho khong co hang de xuat hoac so hang khong du.");
+        }
+        private static void Menu()
         {
             do
             {
@@ -122,7 +142,8 @@ namespace BaiTap2_QLKho
                 Console.WriteLine("2. Them hang ");
                 Console.WriteLine("3. Xem kho co hang ");
                 Console.WriteLine("4. Xuat hang");
-                
+                Console.WriteLine("5. List kho hang");
+
                 LC = Convert.ToInt16(Console.ReadLine());
 
                 switch (LC)
@@ -141,8 +162,11 @@ namespace BaiTap2_QLKho
                     case 4:
                         XuatKho();
                         break;
+                    case 5:
+                        GetListKho();
+                        break;
                 }
-            } while (LC < 5);
+            } while (LC < 6);
         }
         static void Main(string[] args)
         {

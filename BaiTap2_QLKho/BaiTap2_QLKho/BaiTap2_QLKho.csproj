@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Kho.cs" />
     <Compile Include="KhuVuc.cs" />
-    <Compile Include="MatHang.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

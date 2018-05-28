@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 namespace BaiTap2_QLKho
 {
     public class Kho
-    {
-        public int MaKho;
-        string TenKho;
+    {        
+        public string TenKho;
         public float CDai, CRong;
         public int SLKhu;
         public int MaKv;
@@ -19,8 +18,6 @@ namespace BaiTap2_QLKho
         }
         public void ThemKho()
         {
-            Console.Write("Nhap ma kho: ");
-            this.MaKho = Convert.ToInt32(Console.ReadLine());
             Console.Write("Nhap ten kho: ");
             this.TenKho = Console.ReadLine();
             Console.Write("Nhap chieu dai: ");
@@ -32,7 +29,6 @@ namespace BaiTap2_QLKho
         }
         public void Xem()
         {
-            Console.WriteLine("Ma kho " + MaKho);
             Console.WriteLine("Ten kho " + TenKho);
             Console.WriteLine("Chieu dai " + CDai);
             Console.WriteLine("Chieu rong " + CRong);
